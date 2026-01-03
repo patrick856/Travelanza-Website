@@ -1,19 +1,60 @@
-import { Link } from "react-router-dom";
 import { Plane, Facebook, Instagram, Mail, Phone } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (href: string) => {
+    setMobileMenuOpen(false);
+
+    if (href.includes("#")) {
+      const elementId = href.split("#")[1];
+      if (location.pathname === "/") {
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigate to home and pass desired scroll target in state
+        navigate("/", { state: { scrollTo: elementId } });
+      }
+      return;
+    }
+
+    if (href === "/") {
+      if (location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/", { state: { scrollTop: true } });
+      }
+      return;
+    }
+  }
+
   return (
     <footer className="bg-navy-deep text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-gold flex items-center justify-center">
-                <Plane className="w-5 h-5 text-navy-deep" />
-              </div>
-              <span className="text-xl font-serif font-bold">Travelanza</span>
-            </Link>
+            <Link
+            to="/"
+            className="flex items-center gap-3 group mb-6"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("/");
+            }}
+          >
+            <div className="w-10 h-10 rounded-xl overflow-hidden group-hover:scale-105 transition-transform bg-white flex items-center justify-center" style={{boxShadow: "0 0 8px 1px rgba(212, 175, 55, 0.5)"}}>
+              <img src="/logo.png" alt="Travelanza logo" className="w-7 h-7" />
+            </div>
+            <span className="text-xl font-serif font-bold ">
+              Travelanza
+            </span>
+          </Link>
             <p className="text-primary-foreground/70 max-w-md mb-6">
               Your trusted partner in visa assistance. We simplify the visa process 
               so you can focus on planning your journey.
