@@ -62,7 +62,9 @@ const Header = () => {
       if (location.pathname === "/") {
         const element = document.getElementById(elementId);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: "smooth" });
+          }, mobileMenuOpen ? 300 : 0);
         }
       } else {
         // Navigate to home and pass desired scroll target in state
@@ -124,11 +126,10 @@ const Header = () => {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  isActive(link.href)
+                className={`text-sm font-medium transition-colors duration-200 ${isActive(link.href)
                     ? "text-gold"
                     : "text-muted-foreground hover:text-foreground"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
@@ -178,11 +179,10 @@ const Header = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className={`text-base font-medium py-2 ${
-                    isActive(link.href)
+                  className={`text-base font-medium py-2 ${isActive(link.href)
                       ? "text-gold"
                       : "text-muted-foreground"
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </Link>
