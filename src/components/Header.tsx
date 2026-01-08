@@ -13,6 +13,7 @@ const navLinks = [
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -49,9 +50,44 @@ const Header = () => {
     }
   }, [location]);
 
-  const isActive = (href: string) => {
-    if (href === "/") return location.pathname === "/";
-    return location.pathname === href || location.hash === href.replace("/", "");
+  // Scroll Spy Effect
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setActiveSection("");
+      return;
+    }
+
+    const handleScroll = () => {
+      const services = document.getElementById("services");
+      const reviews = document.getElementById("reviews");
+      const scrollPosition = window.scrollY + 100; // Offset for header
+
+      if (!services || !reviews) return;
+
+      if (scrollPosition >= reviews.offsetTop) {
+        setActiveSection("Reviews");
+      } else if (scrollPosition >= services.offsetTop) {
+        setActiveSection("Services");
+      } else {
+        setActiveSection("Home");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
+
+  const isActive = (link: { name: string; href: string }) => {
+    if (location.pathname !== "/") {
+      return location.pathname === link.href;
+    }
+
+    // On home page, use scroll spy
+    if (link.href === "/contact") return false; // Contact is a separate page
+    return activeSection === link.name;
   };
 
   const handleNavClick = (href: string) => {
@@ -126,9 +162,9 @@ const Header = () => {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`text-sm font-medium transition-colors duration-200 ${isActive(link.href)
-                    ? "text-gold"
-                    : "text-muted-foreground hover:text-foreground"
+                className={`text-sm font-medium transition-colors duration-200 ${isActive(link)
+                  ? "text-gold"
+                  : "text-muted-foreground hover:text-foreground"
                   }`}
               >
                 {link.name}
@@ -179,9 +215,9 @@ const Header = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className={`text-base font-medium py-2 ${isActive(link.href)
-                      ? "text-gold"
-                      : "text-muted-foreground"
+                  className={`text-base font-medium py-2 ${isActive(link)
+                    ? "text-gold"
+                    : "text-muted-foreground"
                     }`}
                 >
                   {link.name}
