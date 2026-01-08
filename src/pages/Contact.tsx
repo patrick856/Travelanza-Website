@@ -43,8 +43,8 @@ const contactMethods = [
   {
     icon: Instagram,
     label: "Instagram",
-    value: "@travelanza",
-    href: "https://instagram.com/trave_lanza",
+    value: "@travel_anza",
+    href: "https://instagram.com/travel_anza",
     color: "bg-gradient-to-br from-purple-500 to-pink-500",
   },
 ];
