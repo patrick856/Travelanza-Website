@@ -41,22 +41,22 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link
-            to="/"
-            className="flex items-center gap-3 group mb-6"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("/");
-            }}
-          >
-            <div className="w-10 h-10 rounded-xl overflow-hidden group-hover:scale-105 transition-transform bg-white flex items-center justify-center" style={{boxShadow: "0 0 8px 1px rgba(212, 175, 55, 0.5)"}}>
-              <img src="/logo.png" alt="Travelanza logo" className="w-7 h-7" />
-            </div>
-            <span className="text-xl font-serif font-bold ">
-              Travelanza
-            </span>
-          </Link>
+              to="/"
+              className="flex items-center gap-3 group mb-6"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("/");
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl overflow-hidden group-hover:scale-105 transition-transform bg-white flex items-center justify-center" style={{ boxShadow: "0 0 8px 1px rgba(212, 175, 55, 0.5)" }}>
+                <img src="/logo.png" alt="Travelanza logo" className="w-7 h-7" />
+              </div>
+              <span className="text-xl font-serif font-bold ">
+                Travelanza
+              </span>
+            </Link>
             <p className="text-primary-foreground/70 max-w-md mb-6">
-              Your trusted partner in visa assistance. We simplify the visa process 
+              Your trusted partner in visa assistance. We simplify the visa process
               so you can focus on planning your journey.
             </p>
             <div className="flex gap-4">
@@ -69,7 +69,7 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/travel_anza"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-gold hover:text-navy-deep transition-colors"

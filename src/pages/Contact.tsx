@@ -44,7 +44,7 @@ const contactMethods = [
     icon: Instagram,
     label: "Instagram",
     value: "@travelanza",
-    href: "https://instagram.com/travelanza",
+    href: "https://instagram.com/trave_lanza",
     color: "bg-gradient-to-br from-purple-500 to-pink-500",
   },
 ];
@@ -53,7 +53,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1 pt-20 lg:pt-24">
         {/* Hero */}
         <section className="bg-gradient-hero py-20 lg:py-32">
@@ -79,7 +79,7 @@ const Contact = () => {
               transition={{ delay: 0.2 }}
               className="text-lg text-primary-foreground/80 max-w-2xl mx-auto"
             >
-              Ready to start your visa journey? Reach out through any of our 
+              Ready to start your visa journey? Reach out through any of our
               channels and our team will get back to you within 24 hours.
             </motion.p>
           </div>
